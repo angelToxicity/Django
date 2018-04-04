@@ -1,0 +1,38 @@
+{% extends 'default/default.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+{% if object_list %}
+<div>
+	A continuación se muestran los registros de libro de las editoriales
+</div>
+<br><br>
+<div class="table-responsive">
+	<table class="table table-striped text-center">
+		<tr>
+			<th>Titulo</th>
+			<th>Autor</th>
+			<th>Fecha de Publicación</th>
+			<th>Votos</th>
+			<th>Reseña</th>
+			<th>Acciones</th>
+		</tr>
+		{% for libro in object_list %}
+		<tr>
+			<td>{{ libro.titulo }}</td>
+			<td>{{ libro.autor }}</td>
+			<td>{{ libro.fecha_publicacion }}</td>
+			<td>{{ libro.votos }}</td>
+			<td>{{ libro.resumen }}</td>
+			<td>
+				<a type="button" href="{% url 'proyecto:votar' libro.id libro.votos %}" class="btn btn-success"><span class="oi oi-thumb-up"></span> Votar</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% else %}
+<h1>No Existen Registros de Libros</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'default/default_login.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+{% if object_list %}
+<div>
+	A continuación se muestran los registros de libro de su editorial así como su relación de votos
+	<a href="{% url 'proyecto:libros' %}" type="button" style="float: right;" class="btn btn-success"><span class="oi oi-plus"></span> Agregar Libro</a>
+</div>
+<br><br>
+<div class="table-responsive">
+	<table class="table table-striped text-center">
+		<tr>
+			<th>#</th>
+			<th>Titulo</th>
+			<th>Autor</th>
+			<th>Sexo</th>
+			<th>Fecha de Publicación</th>
+			<th>Votos</th>
+			<th>Acciones</th>
+		</tr>
+		{% for libro in object_list %}
+		<tr>
+			<td>{{ libro.id }}</td>
+			<td>{{ libro.titulo }}</td>
+			<td>{{ libro.autor }}</td>
+			<td>{{ libro.sexo }}</td>
+			<td>{{ libro.fecha_publicacion }}</td>
+			<td>{{ libro.votos }}</td>
+			<td>
+				<a type="button" href="{% url 'proyecto:editar' libro.id %}" class="btn btn-primary" ><span class="oi oi-pencil"></span></a>
+				<a type="button" class="btn btn-danger" href="{% url 'proyecto:eliminar' libro.id %}"><span class="oi oi-x"></span></a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% else %}
+<h1>No Existen Registros de Libros</h1>
+<br>
+<a href="{% url 'proyecto:libros' %}" class="btn btn-primary" type="submit"><span class="oi oi-plus"></span> Agregar Libros</a>
+{% endif %}
+{% endblock %}

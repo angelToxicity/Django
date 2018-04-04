@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap-bootswatch.min.css' %}">
+	<link rel="stylesheet" href="{% static '/open-iconic/font/css/open-iconic-bootstrap.css' %}">
+	<script type="text/javascript" src="{% static 'jquery-3.3.1.js' %}"></script>
+	<script type="text/javascript" src="{% static 'popper.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+	<title>
+		{% block title %}
+		Proyecto
+		{% endblock %}
+	</title>
+</head>
+<body>
+	<div class="container">
+		{% block navbar %}
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+				<a class="navbar-brand" href="/">Proyecto</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" aria-hidden="true">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+				    <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+				  </li>
+				  <li class="nav-item dropdown active">
+				    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="oi oi-people"></span> Usuarios</a>
+				    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+				      <a class="dropdown-item" href="{% url 'login' %}"><span class="oi oi-person"> Iniciar Sesión</a>
+				      <a class="dropdown-item" href="/registro/"><span class="oi oi-key"> Registrarse</a>
+				    </div>
+				  </li>
+				</ul>
+				<ul class="navbar-nav navbar-right">
+					<li class="nav-item dropdown active">
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opciones</a>
+					    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+					      <a class="dropdown-item" href="{% url 'logout' %}"><span class="oi oi-power"></span> Salir</a>
+					    </div>
+					 </li>
+				</ul>
+				</div>
+			</nav>
+		{% endblock %}
+
+		{% block content %}
+		{% endblock %}
+
+		{% block footer %}
+		{% endblock %}
+	</div>
+</body>
+</html>

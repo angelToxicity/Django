@@ -1,0 +1,14 @@
+{% extends 'default/default.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+<form action="" method="post">
+	{% csrf_token %}
+	<h3>Su voto por el libro {{ libro.titulo }} de {{ libro.autor }}, ha sido procesado correctamente.</h3>
+	<br>
+	<a href="{% url 'proyecto:votos' %}" class="btn btn-primary" type="submit"><span class="oi oi-reload"></span> Votar nuevamente</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="btn btn-secondary" href="{% url 'proyecto:principal' %}">Inicio</a>
+</form>
+{% endblock %}

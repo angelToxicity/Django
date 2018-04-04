@@ -1,0 +1,13 @@
+{% extends 'default/default.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+	<form action="" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn-success"><span class="oi oi-check"></span>  Guardar</button>
+	</form>
+</div>
+{% endblock %}

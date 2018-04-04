@@ -1,0 +1,14 @@
+{% extends 'default/default_login.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+<form action="" method="post">
+	{% csrf_token %}
+	<h3>¿Está seguro de eliminar el libro {{ object.titulo }} de {{ object.autor }}?</h3>
+	<br>
+	<button class="btn btn-danger" type="submit"><span class="oi oi-x"></span> Eliminar</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="btn btn-secondary" href="{% url 'proyecto:lista' %}">No, gracias</a>
+</form>
+{% endblock %}
