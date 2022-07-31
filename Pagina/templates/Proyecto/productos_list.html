@@ -1,0 +1,65 @@
+{% extends 'default/default_login.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+<div>
+	A continuación se muestran los ingresos de productos registrados en el sistema:
+	<a class="btn btn-secondary" style="float: right;" href="{% url 'proyecto:lista' %}">Atras</a>
+</div>
+<br><br>
+{% for product in object_list %}
+	{% if forloop.counter == 1 %}
+		<div class="row">
+			<div class="col-sm-4 offset-md-1">
+				<label for="id_titulo">Titulo:</label>
+				<input disabled type="text" name="titulo" class="form-control" maxlength="50" required="" id="id_titulo" value="{{ product.titulo }}">
+			</div>
+			<div class="col-sm-4 offset-md-2">
+				<label for="id_codigo">Codigo de Producto:</label>
+				<input disabled type="text" name="codigo" class="form-control" maxlength="30" required="" id="id_codigo" value="{{ product.codigo }}">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-8 offset-md-2">
+				<label for="id_descripcion">Descripción:</label>
+				<textarea disabled name="descripcion" cols="20" rows="10" class="form-control" maxlength="100" required="" id="id_descripcion" placeholder="{{ product.descripcion }}"></textarea>
+			</div>
+		</div>
+	{% endif %}
+{% endfor %}
+<br>
+{% if object_list %}
+	<div class="table-responsive">
+		<table class="table table-striped text-center">
+			<tr>
+				<th>N° lote</th>
+				<th>Fecha vencimiento</th>
+				<th>Fecha recepcion</th>
+				<th>Cantidad</th>
+				<th>Ubicacion</th>
+				<th>Proveedor</th>
+			</tr>
+			{% for detail in object_list %}
+			<tr>
+				<td>{{ detail.lote }}</td>
+				{% if detail.fecha_vencimiento != None %}
+					<td>{{ detail.fecha_vencimiento }}</td>
+				{% else %}
+					<td>-</td>
+				{% endif %}
+				<td>{{ detail.fecha_recepcion }}</td>
+				<td>{{ detail.cantidad }}</td>
+				<td>{{ detail.ubicacion }}</td>
+				<td>{{ detail.proveedor }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% else %}
+	<h1>No existen ingresos de este producto</h1>
+	<br>
+	<a href="{% url 'proyecto:new-productos' %}" class="btn btn-primary" type="submit"><span class="oi oi-plus"></span> Agregar producto</a>
+{% endif %}
+{% endblock %}

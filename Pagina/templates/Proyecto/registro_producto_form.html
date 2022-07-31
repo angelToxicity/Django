@@ -1,0 +1,19 @@
+{% extends 'default/default_login.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+<div style="float: right;">
+	<a class="btn btn-secondary" href="{% url 'proyecto:lista' %}">Cancelar</a>
+</div>
+<br><br>
+<center>
+	<div class="col-lg-push-4 col-lg-4">
+		<form action="insert-input" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" class="btn btn-success"><span class="oi oi-plus"></span> Agregar</button>
+		</form>
+	</div>
+</center>
+{% endblock %}

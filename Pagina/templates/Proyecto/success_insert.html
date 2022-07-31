@@ -1,0 +1,14 @@
+{% extends 'default/default.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+<form action="" method="post">
+	{% csrf_token %}
+	<h3>El ingreso del producto ha sido registrado correctamente.</h3>
+	<br>
+	<a href="{% url 'proyecto:new-input' id %}" class="btn btn-primary" type="submit"><span class="oi oi-reload"></span> Registrar ingreso</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="btn btn-secondary" href="{% url 'proyecto:lista' %}">Inicio</a>
+</form>
+{% endblock %}

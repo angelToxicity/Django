@@ -125,3 +125,35 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 LOGIN_REDIRECT_URL = reverse_lazy('proyecto:lista')
 LOGOUT_REDIRECT_URL = reverse_lazy('proyecto:principal')
+LOGGING = {
+    'version': 1,
+    # The version number of our log
+    'disable_existing_loggers': False,
+    # django uses some of its own loggers for internal operations. In case you want to disable them just replace the False above with true.
+    # A handler for WARNING. It is basically writing the WARNING messages into a file called WARNING.log
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'warning.log'),
+        },
+        'console': {
+            # logging handler that outputs log messages to terminal
+            'class': 'logging.StreamHandler',
+            'level': 'WARNING', # message level to be written to console
+        },
+    },
+    # A logger for WARNING which has a handler called 'file'. A logger can have multiple handler
+    'loggers': {
+       # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
+        '': {
+            'handlers': ['file'], #notice how file variable is called in handler which has been defined above
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+    'django.db': {
+        # django also has database level logging
+        'level': 'WARNING'
+    },
+}

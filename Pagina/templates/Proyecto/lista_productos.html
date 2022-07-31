@@ -1,0 +1,42 @@
+{% extends 'default/default_login.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br><br>
+<div>
+	A continuación se muestran los registros de productos en stock
+	<a href="{% url 'proyecto:new-productos' %}" type="button" style="float: right;" class="btn btn-success"><span class="oi oi-plus"></span> Agregar producto</a>
+</div>
+<br><br>
+{% if object_list %}
+	<div class="table-responsive">
+		<table class="table table-striped text-center">
+			<tr>
+				<th>Nombre</th>
+				<th>Codigo</th>
+				<th>Cantidad (Stock)</th>
+				<th>Acciones</th>
+			</tr>
+			{% for product in object_list %}
+			<tr>
+				<td>{{ product.titulo }}</td>
+				<td>{{ product.codigo }}</td>
+				{% if product.cantidad != None %}
+					<td>{{ product.cantidad }}</td>
+				{% else %}
+					<td>0</td>
+				{% endif %}
+				<td>
+					<a type="button" href="{% url 'proyecto:new-input' product.id %}" class="btn btn-success" title="Agregar recepcion"><span class="oi oi-plus"></span></a>
+					<a type="button" href="{% url 'proyecto:detalle' product.id %}" class="btn btn-primary" title="Visualizar recepciones"><span class="oi oi-magnifying-glass"></span></a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% else %}
+	<h1>No existen registros de productos</h1>
+	<br>
+	<a href="{% url 'proyecto:new-productos' %}" class="btn btn-primary" type="submit"><span class="oi oi-plus"></span> Agregar producto</a>
+{% endif %}
+{% endblock %}
